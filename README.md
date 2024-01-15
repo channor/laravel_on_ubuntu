@@ -33,6 +33,10 @@ I prefer using a project-user, as described below, when running composer and art
 
 ## Server users
 You will typically log in as ubuntu. I will create a new user for each project, and add the user to www-data group.
+Add user:
+```bash
+sudo adduser tools
+```
 
 Add user to group: 
 ```bash
