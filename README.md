@@ -27,14 +27,15 @@ Now server is ready. You can proceed setting up your project.
 3. Create a project directory inside `/var/www/html`
 4. Give www-data ownership, and write access for the group to the new directory.
 5. CD into the project dir and clone github repository to the project dir root. I.e. /var/www/html/project.
-6. Create a database for the project and a database user.
-7. Copy .env.example to .env.
-8. Run `php artisan key:generate` with the project-user you have created.
-9. Edit .env. Set environment to production and debug to false on a production (published website) and set the correct database values.
-10. ```bash
+6. Give write access to group for /storage and /bootstrap/cache.
+7. Create a database for the project and a database user.
+8. Copy .env.example to .env.
+9. Run `php artisan key:generate` with the project-user you have created.
+10. Edit .env. Set environment to production and debug to false on a production (published website) and set the correct database values.
+11. ```bash
     composer install --optimize-autoloader --no-dev
     ```
-11. You can now migrate and seed database and start browsing your site.
+12. You can now migrate and seed database and start browsing your site.
 
 ## Frequently used paths
 | Path                       | Description                                                                         |
