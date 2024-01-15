@@ -17,6 +17,24 @@ This is my setup
 4. Install PHP (per now, I prefer 8.2.). You can use the ondrej/php repository.
 5. Install Mysql-server
 6. Install npm and node.
+7. Install other server requirements.
+
+Now server is ready. You can proceed setting up your project.
+
+## Set up laravel project
+1. Create a project user and add user to www-data group
+2. Generate SSH key for the user
+3. Create a project directory inside `/var/www/html`
+4. Give www-data ownership, and write access for the group to the new directory.
+5. CD into the project dir and clone github repository to the project dir root. I.e. /var/www/html/project.
+6. Create a database for the project and a database user.
+7. Copy .env.example to .env.
+8. Run `php artisan key:generate` with the project-user you have created.
+9. Edit .env. Set environment to production and debug to false on a production (published website) and set the correct database values.
+10. ```bash
+    composer install --optimize-autoloader --no-dev
+    ```
+11. You can now migrate and seed database and start browsing your site.
 
 ## Frequently used paths
 | Path                       | Description                                                                         |
@@ -116,3 +134,21 @@ I will go with PHP 8.2.
 3. ```bash
    sudo apt-get install php8.2 php8.2-fpm php8.2-mysql php8.2-ctype php8.2-curl php8.2-dom php8.2-fileinfo php8.2-filter php8.2-hash php8.2-mbstring php8.2-openssl php8.2-pcre php8.2-pdo php8.2-session php8.2-tokenizer php8.2-xml
    ```
+
+## Generate SSH key to access Github
+Generate a new SSH key for the user (on the Ubuntu server) who are going to clone repository. It shall be stored in /home/username/.ssh.
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+Add SSH Key to SSH Agent:
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+```
+
+Copy the public key and paste into Github SSH settings:
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+Copy the output.
