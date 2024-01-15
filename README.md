@@ -1,14 +1,13 @@
 # Laravel on Ubuntu
 This instructions are based on others knowledge and resources on the internet combined with my own experince.
 
-This this instruction on your own risk.
+Use this instruction on your own risk.
 
 This is my setup
 * Ubuntu 22.04
 * PHP 8.2
 * Mysql-server
 * Nginx
-* Node
 
 ## Installation steps
 1. Set-up server (I use AWS EC2)
@@ -16,7 +15,6 @@ This is my setup
 3. update and upgrade server.
 4. Install PHP (per now, I prefer 8.2.). You can use the ondrej/php repository.
 5. Install Mysql-server
-6. Install npm and node.
 7. Install other server requirements.
 
 Now server is ready. You can proceed setting up your project.
@@ -153,3 +151,13 @@ Copy the public key and paste into Github SSH settings:
 cat ~/.ssh/id_rsa.pub
 ```
 Copy the output.
+
+## Laravel assets
+By default Git does not push your assets build.
+
+Run 
+```bash
+npm run build
+```
+and
+Remove `/public/build` from .gitignore in the project root before you are pushing to the branch you will clone into production server.
